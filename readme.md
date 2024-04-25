@@ -1,18 +1,4 @@
-# Readme
-
-## Migration
-
-Install migration tool (MacOS)
-
-```bash
-brew install golang-migrate
-```
-
-Create migration file
-
-```bash
-migrate create -seq -ext=.sql -dir=./migrations create_users_table
-```
+# Authentication
 
 ## Run server
 
@@ -22,9 +8,12 @@ go run ./
 
 ## Ping
 
+Test if server is working
+
 ```bash
 curl -i http://localhost:4000/ping
-
+---
+pong
 ```
 
 ## Test basic authentication
@@ -33,6 +22,14 @@ Create some username password:
 
 ```bash
 CREDENTIALS=$(echo -n "alice@example.com:pa55word" | base64)
+```
+
+You can double check if it worked:
+
+```bash
+echo $CREDENTIALS | base64 --decode
+---
+alice@example.com:pa55word                                                                     
 ```
 
 Send the request
